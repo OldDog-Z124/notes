@@ -1,3 +1,5 @@
+import './Note.css'
+
 const Note = ({ note, toggleImportance }) => {
   const label = note.important
     ? 'make not important'
@@ -5,8 +7,8 @@ const Note = ({ note, toggleImportance }) => {
 
   return (
     <li className="note">
-      {note.content}
-      <button onClick={toggleImportance}>{label}</button>
+      <p className="text">{note.content}</p>
+      <button className="button" onClick={toggleImportance}>{label}</button>
     </li>
   )
 }

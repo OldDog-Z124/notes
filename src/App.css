@@ -1,0 +1,44 @@
+.app {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 800px;
+  padding: 40px;
+  margin: 0 auto;
+  border: 4px solid #000;
+  background-color: #fbfbfb;
+}
+
+.app .title {
+  text-align: center;
+}
+
+.app .show-button {
+  padding: 10px 20px;
+}
+
+.app .note-form {
+  display: flex;
+  width: 100%;
+  margin: 10px 0;
+  border: 1px solid #000;
+}
+
+.app .note-form-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 15px;
+  line-height: 30px;
+}
+
+.app .note-form-input:focus {
+  outline: none;
+}
+
+.app .note-form-button {
+  display: block;
+  width: 100px;
+  padding: 20px 10px;
+  border: none;
+}

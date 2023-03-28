@@ -1,30 +1,17 @@
 import { useState, useEffect } from 'react'
 
+import './App.css'
+
 import noteService from './services/notes'
-import Note from './components/Note'
-import Notification from './components/Notification'
-
-
-const Footer = () => {
-  const footerStyle = {
-    color: 'green',
-    fontStyle: 'italic',
-    fontSize: 16
-  }
-
-  return (
-    <div style={footerStyle}>
-      <br />
-      <em>Note app, Department of Computer Science, University of Helsinki 2022</em>
-    </div>
-  )
-}
+import NoteList from './components/NoteList/NoteList'
+import Notification from './components/Notification/Notification'
+import Footer from './components/Footer/Footer'
 
 const App = () => {
   const [notes, setNotes] = useState([])
-  const [newNote, setNewNote] = useState('a new note ...')
+  const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('some error happened...')
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     noteService
@@ -77,24 +64,28 @@ const App = () => {
   }
 
   return (
-    <div>
-      <h1>Notes</h1>
-      <Notification message={errorMessage} />
-      <button onClick={() => setShowAll(!showAll)}>
+    <div className='app'>
+      <h1 className='title'>Notes</h1>
+
+      <div className='notification-container'>
+        <Notification message={errorMessage} />
+      </div>
+
+      <button className='show-button' onClick={() => setShowAll(!showAll)}>
         {showAll ? 'important' : 'all'}
       </button>
-      <ul>
-        {notesToShow.map(note => 
-          <Note 
-            key={note.id}
-            note={note} 
-            toggleImportance={() => toggleImportanceOf(note.id)}
-          />
-        )}
-      </ul>
-      <form onSubmit={addNote}>
-        <input value={newNote} onChange={handleNoteChangee} />
-        <button type='submit'>save</button>
+
+      <NoteList notes={notesToShow} toggleImportanceOf={toggleImportanceOf} />
+
+      <form className='note-form' onSubmit={addNote}>
+        <input 
+          className='note-form-input' 
+          type="text"
+          value={newNote} 
+          placeholder="a new note ..."
+          required  
+          onChange={handleNoteChangee} />
+        <button className='note-form-button' type='submit'>save</button>
       </form>
 
       <Footer />
